@@ -87,6 +87,76 @@ def calculate_occs_words(train, smoothing=1):
             class2word2occs[goldclass][word] += 1
     return class2word2occs
 
+
+# calcule log p(review|class) + log p(class)
+def get_logproba_review_and_class(logprobas_classes, logprobas_words, example, reviewclass):
+    logproba = logprobas_classes[reviewclass] # log p(class)
+
+    # add p(word|class) for each word in set of words
+    for word in set(example):
+        if word in logprobas_words[reviewclass]: logproba += logprobas_words[reviewclass][word]
+        else: logproba += logprobas_words[reviewclass]["$UNKNOWN$"]
+            
+    return logproba
+
+
+# predict whether an review is good or bad. log p(class|review) is calculated through its bayesian
+# reformulation: log p(review|class) + log p(class) - log p(review) log p(review) is the same for
+# either class and is therefore omitted in the calculations here because we simply take the highest
+# class with the highest log proba, which is unchanged by log p(review).
+def predict_review(logprobas_classes, logprobas_words, example):
+    
+    # calculate scores of each class, representing log p(review|class) + log p(class) for each class
+    logproba_bad = get_logproba_review_and_class(logprobas_classes, logprobas_words, example, "bad")
+    logproba_good = get_logproba_review_and_class(logprobas_classes, logprobas_words, example, "good")
+    
+    if logproba_bad > logproba_good: return "bad"
+    else: return "good"
+
+        
+# predict all emails and return the predicted and gold labels
+def predict_all(logprobas_classes, logprobas_words, dev):
+    ygolds = []
+    ypreds = []
+    for example, ygold in dev:
+        ypred = predict_review(logprobas_classes, logprobas_words, example)
+        ypreds.append(ypred)
+        ygolds.append(ygold)
+    return ypreds, ygolds
+
+
+# evaluate prediction and print precision, recall and f-score
+def evaluate(ypreds, ygolds):
+    assert(len(ypreds)==len(ygolds)) # check equal lengths of predicted and gold
+    correct = 0
+    for ypred, ygold in zip(ypreds, ygolds):
+        if ypred==ygold and ypred=="bad":
+            correct += 1
+         
+    #nombre de prédiction en tant que mauvaise revue
+    nb_predicted_bad = len([x for x in ypreds if x=="bad"])
+    #nombre réel de mauvaises revues
+    nb_gold_bad = len([x for x in ygolds if x=="bad"])
+    
+    print ("\n\t\t" + str(correct) + " réponses correctes !\n")
+    if correct != 0:
+        precision = recall = 1
+        if nb_predicted_bad != 0:
+            precision = correct/float(nb_predicted_bad)
+        else:
+            print("nombre de prédiction en tant que mauvaise revue = null")
+        
+        if nb_gold_bad != 0:
+            recall = correct/float(nb_gold_bad)
+        else:
+            print("nombre réel de mauvaises revues = null")
+            
+        fscore = 2*(precision*recall) / float(precision+recall)
+                
+        print("Precision =\t"+str(precision*100)+"%")
+        print("Recall =\t"+str(recall*100)+"%")
+        print("Fscore =\t"+str(fscore*100)+"%")
+
        
 
 if __name__=="__main__":
@@ -105,5 +175,13 @@ if __name__=="__main__":
     logprobas_classes = calculate_logprobas_classes(train)
     logprobas_words =  calculate_logprobas_words(train, 0.01)
 
+    # prediction and evaluation on dev set. Adjust the smoothing factor
+    # above to get the best possible score on the dev set
+    ypreds, ygold = predict_all(logprobas_classes, logprobas_words, dev)
+    print("\nScores on dev set: " + '\n' + str(ypreds) + '\n' + str(ygold) )
+    evaluate(ypreds, ygold)
 
-    print(data[0])
+    # predict and evaluate on test set (once the smoothing value has been chosen
+    ypreds, ygold = predict_all(logprobas_classes, logprobas_words, test)
+    print("\nScores on test set: " + '\n' + str(ypreds) + '\n' + str(ygold))
+    evaluate(ypreds, ygold)

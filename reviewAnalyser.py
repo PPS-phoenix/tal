@@ -138,24 +138,27 @@ def evaluate(ypreds, ygolds):
     #nombre réel de mauvaises revues
     nb_gold_bad = len([x for x in ygolds if x=="bad"])
     
-    print ("\n\t\t" + str(correct) + " réponses correctes !\n")
-    if correct != 0:
-        precision = recall = 1
-        if nb_predicted_bad != 0:
-            precision = correct/float(nb_predicted_bad)
-        else:
-            print("nombre de prédiction en tant que mauvaise revue = null")
+    print ("\n\t\t" + str(correct) + " 'bad' correcte sur "+ str(nb_gold_bad) +\
+    " (prédiction: "+ str(nb_predicted_bad) +" ) !\n")
+    
+    #if correct != 0:
+    precision = recall = 1
+    if nb_predicted_bad != 0:
+        precision = correct/float(nb_predicted_bad)
+    else:
+        print("toutes les revues ont été prédites comme 'good'.")
+        precision = 0
+    
+    if nb_gold_bad != 0:
+        recall = correct/float(nb_gold_bad)
+    else:
+        print("nombre réel de mauvaises revues = null")
         
-        if nb_gold_bad != 0:
-            recall = correct/float(nb_gold_bad)
-        else:
-            print("nombre réel de mauvaises revues = null")
+    fscore = 2*(precision*recall) / float(precision+recall)
             
-        fscore = 2*(precision*recall) / float(precision+recall)
-                
-        print("Precision =\t"+str(precision*100)+"%")
-        print("Recall =\t"+str(recall*100)+"%")
-        print("Fscore =\t"+str(fscore*100)+"%")
+    print("Precision =\t"+str(precision*100)+"%")
+    print("Recall =\t"+str(recall*100)+"%")
+    print("Fscore =\t"+str(fscore*100)+"%")
 
        
 

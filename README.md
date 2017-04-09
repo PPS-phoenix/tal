@@ -1,9 +1,9 @@
 # Projet TAL : 
 
 ## Auteurs
-- Cédrick RIBET
-- Hugo BOMMART
-- Manfred MADELAINE
+* Cédrick RIBET
+* Hugo BOMMART
+* Manfred MADELAINE
 
 ## A propos
 Version utilisée : python 3.6 32-bit

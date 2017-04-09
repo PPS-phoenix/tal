@@ -8,7 +8,7 @@
 * Manfred MADELAINE
 
 ## A propos
-Version utilisée : **python 3.6** 32-bit
+__Version utilisée__ : **python 3.6** 32-bit
 
 -----
 

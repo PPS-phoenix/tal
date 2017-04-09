@@ -6,7 +6,7 @@
 * Manfred MADELAINE
 
 ## A propos
-Version utilisée : python 3.3 32-bit
+Version utilisée : python 3.6 32-bit
 
 ## Exécution
 rentrer les commandes suivantes pour exécuter le programme:

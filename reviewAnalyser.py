@@ -159,14 +159,13 @@ def evaluate(ypreds, ygolds):
     if precision+recall != 0:
         fscore = 2*(precision*recall) / float(precision+recall)
     else:
-        print("score = null")
         fscore = 0
         
     
-    missShots = nb_predicted_bad-correct
-    nbGood = nb_gold_bad-len(ygolds)
+    missShots = nb_predicted_bad - correct
+    nbGood    = len(ygolds) - nb_gold_bad
     
-    erreur = (correct - (nbGood - missShots)) / float(len(ygolds))
+    erreur = 1 - (correct + (nbGood - missShots)) / float(len(ygolds))
         
     print("Precision  \t= "+str(precision*100)+"%")
     print("Exactitude \t= "+str(recall*100)+"%")

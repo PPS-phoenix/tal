@@ -137,11 +137,12 @@ def evaluate(ypreds, ygolds):
     nb_predicted_bad = len([x for x in ypreds if x=="bad"])
     #nombre réel de mauvaises revues
     nb_gold_bad = len([x for x in ygolds if x=="bad"])
-    
-    print ("\n\t\t" + str(correct) + " 'bad' correcte sur "+ str(nb_gold_bad) +\
-    " (prédiction: "+ str(nb_predicted_bad) +" ) !\n")
+
+    print ("\n\t\t" + str(correct) + " predictions sur "+ str(nb_predicted_bad) +\
+    " sont correctes avec un total de "+ str(nb_gold_bad) +" 'bad review(s)' !\n")
     
     #if correct != 0:
+        #on peut delet cette ligne 
     precision = recall = 1
     if nb_predicted_bad != 0:
         precision = correct/float(nb_predicted_bad)
@@ -153,12 +154,24 @@ def evaluate(ypreds, ygolds):
         recall = correct/float(nb_gold_bad)
     else:
         print("nombre réel de mauvaises revues = null")
+        recall = 1
         
-    fscore = 2*(precision*recall) / float(precision+recall)
-            
-    print("Precision =\t"+str(precision*100)+"%")
-    print("Recall =\t"+str(recall*100)+"%")
-    print("Fscore =\t"+str(fscore*100)+"%")
+    if precision+recall != 0:
+        fscore = 2*(precision*recall) / float(precision+recall)
+    else:
+        print("score = null")
+        fscore = 0
+        
+    
+    missShots = nb_predicted_bad-correct
+    nbGood = nb_gold_bad-len(ygolds)
+    
+    erreur = (correct - (nbGood - missShots)) / float(len(ygolds))
+        
+    print("Precision  \t= "+str(precision*100)+"%")
+    print("Exactitude \t= "+str(recall*100)+"%")
+    print("Fscore \t= "+str(fscore*100)+"%")
+    print("Taux erreur \t= "+str(erreur*100)+"%")
 
        
 

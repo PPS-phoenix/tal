@@ -18,7 +18,9 @@ rentrer les commandes suivantes pour exécuter le programme :
 $ python reviewAnalyser.py chemin_vers_le_fichier/data/
 ```
 Liste des `options` en ligne de commande (si nécessaire) : 
-Homework #5
+1. Homework #5
+2. po2
+1. op3
 
 ## Bibliothèques 
 Voici la liste des bibliothèques à installer:

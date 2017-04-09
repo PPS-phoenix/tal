@@ -8,6 +8,8 @@
 ## A propos
 Version utilisée : **python 3.6** 32-bit
 
+-----
+
 ## Exécution
 rentrer les commandes suivantes pour exécuter le programme :
 ```

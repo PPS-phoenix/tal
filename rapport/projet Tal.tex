@@ -1,0 +1,111 @@
+\documentclass{report}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{url}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+      
+
+\title{Rapport TAL}
+\author{Cédrick \bsc{Ribet} - Hugo \bsc{Bommart} - Manfred \bsc{Madelaine}}
+\date{3 mai 2017}
+
+\begin{document}
+
+
+\maketitle
+
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+
+\part{Projet TAL}
+\chapter{A propos}
+\section{Consignes}
+\paragraph{Rapport :}
+Un rapport de 5 à 7 pages qui décrit votre travail (police et marges de taille raisonnable). Vous devez y décrire l'objectif de votre projet, la motivation
+derrère ce que vous avez fait, la méthode que vous avez utilisé, à quel point cela fonctionne, et les limitations de votre programme (c'est-à-dire les cas qui restent à traiter ou qui fonctionnent mal). \\
+Vous devez également inclure une petite section qui décrit de façon brève la contribution de chaque membre du groupe.
+Le rapport ne doit pas inclure de code source. \\
+Mettez en avant ce que votre programme gère bien. Les limitations de votre programme sont importantes à mentionner, mais il est aussi important de les présenter comme des points d'amélioration plutôt que comme des failles. Si vous savez comment vous auriez souhaité résoudre ces limitations si vous aviez eu plus de temps, mentionnez-le comme une des choses prévues pour l'avenir.
+
+\paragraph{Sujet :}
+\begin{description}
+\item[Début du projet :] Le 27 Mars 2017
+\item[Dead line :] \textcolor{red}{Le 6 Mai 2017 à 23h59}, avec une pénalité de -5pts par jour de retard.
+\end{description}
+
+\paragraph{Git:}
+Un dépôt \bsc{git} a été utilisé tout au kong de ce projet. Voici le lien du dépôt: \\
+\url{https://github.com/hkemmel/tal} %?? .git à la fin ou pas ? 
+
+\newpage
+
+\section{Choix du Sujet}
+\paragraph{E-opinion - classification de reviews :}
+L'e-opinion (analyse de sentiments) est un domaine très important pour les entreprises car les retours clients permettent de s'adapter aux marchés ou d'identifier des points d'amélioration.
+Un moyen simple de s'attaquer au problème est de classifier les reviews comme étant positives ou négatives (voire sur une échelle plus fine). Vous pouvez également essayer d'identifier automatiquement certains aspects des reviews qui peuvent être pertinents pour une entreprise, par exemple en identifiant toutes les
+phrases négatives ou positives.
+
+\paragraph{Enjeux :}
+\begin{itemize}
+\item[-] Vous aurez probablement un certain nombre de mots qui relèvent du domaine spécifique que vous aurez choisi. Vous pourrez donc constituer un petit lexique contenant des mots spécialisés du domaine, par exemple des aspects du produit qui est en vente.
+
+\item[-] Détecter les phrases positives et négatives n'est pas trivial. Par exemple, l'existence d'un mot négatif dans une phrase ne signifie pas forcément que la phrase est négative. Par exemple: Ce n'est pas du tout un mauvais portable.\\ 
+Vous pouvez également rencontrer des comparaisons avec d'autres produits : Le portable de la marque concurrente est bien meilleur que ce portable.\\
+Donc une approche "sac de mots" ne sera pas forcément la méthode la plus adaptée. Mais vous pouvez toujours tester cette méthode pour l'utiliser comme point de comparaison avec d'autres méthodes plus complexes que vous essayerez.
+\end{itemize}
+
+\paragraph{A faire :}
+\begin{itemize}
+\item[-] Choisissez un domaine sur lequel vous voulez appliquer votre analyseur de sentiments et définissez \bsc{l'objectif de votre étude}. Imaginez-vous dans la position d'une entreprise qui fournit une étude de marché pour un client. Votre tâche est de vendre votre analyseur de sentiments et de leur montrer comment
+cela marche et à quel point ça marche bien !
+\item[-] Trouvez le corpus sur lequel vous allez travailler. Votre corpus sera constitué d'un ensemble de documents (chaque document étant une critique de produit) contenant du texte en langage naturel. 
+\item[-] Vous utiliserez la méthode que vous voulez pour effectuer cette tâche (probabilités, expressions régulières, grammaires CFG (CFGs avec NLTK), règles écrites à la main, etc.)
+\end{itemize}
+
+
+
+\paragraph{Motivations :}
+Ce sujet se raprochait le plus des TPs que nous avions fait en cours et des affinités en TAL de chacun. En effet, 
+
+
+
+\section[un titre plus court]{section}
+\subsection{Sous-Section}
+\paragraph{Début}
+c'est génial !
+
+\paragraph{Suite}
+azaa \newline ou \\ 
+\newpage nouveau paragraphe 
+
+\begin{itemize}
+\item[*] Un lapin.
+\end{itemize}
+
+\begin{enumerate}
+\item un canard
+\item une pintade % ciomm
+\end{enumerate}
+
+\begin{description}
+\item[Un canard :] bestiole qui fait coin.
+\item[Un ours :] bestiole qui fait mal.
+\end{description}
+
+un canard\footnotemark[1] \\
+un ornithorynque\footnotemark[18] \\
+un ours\footnotemark[32]
+
+\footnotetext[1]{bestiole qui fait coin} 
+\footnotetext[18]{bestiole qui fait rire} 
+\footnotetext[32]{bestiole qui fait mal}
+
+
+
+\end{document}

@@ -1,0 +1,16 @@
+\select@language {french}
+\contentsline {part}{I\hspace {1em}Projet TAL}{2}
+\contentsline {chapter}{\numberline {1}A propos}{3}
+\contentsline {section}{\numberline {1.1}Consignes}{3}
+\contentsline {paragraph}{Rapport :}{3}
+\contentsline {paragraph}{Sujet :}{3}
+\contentsline {paragraph}{Git:}{3}
+\contentsline {section}{\numberline {1.2}Choix du Sujet}{4}
+\contentsline {paragraph}{E-opinion - classification de reviews :}{4}
+\contentsline {paragraph}{Enjeux :}{4}
+\contentsline {paragraph}{A faire :}{4}
+\contentsline {paragraph}{Motivations :}{4}
+\contentsline {section}{\numberline {1.3}un titre plus court}{4}
+\contentsline {subsection}{\numberline {1.3.1}Sous-Section}{4}
+\contentsline {paragraph}{D\'ebut}{4}
+\contentsline {paragraph}{Suite}{4}

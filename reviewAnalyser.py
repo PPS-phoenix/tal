@@ -200,3 +200,6 @@ if __name__=="__main__":
     ypreds, ygold = predict_all(logprobas_classes, logprobas_words, test)
     print("\nScores on test set: " + '\n' + str(ypreds) + '\n' + str(ygold))
     evaluate(ypreds, ygold)
+    
+    print("TODO: \nAffinier l'échelle  de classification des reviews : notation\
+    \nIdentifier automatiquement certains aspects des reviews qui peuvent être pertinents")

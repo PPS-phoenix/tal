@@ -1,7 +1,7 @@
 # Projet TAL : 
 
 ## Auteurs
-Cédrick RIBET
+* [Cédrick RIBET]
 Hugo BOMMART
 Manfred MADELAINE
 

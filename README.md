@@ -1,5 +1,10 @@
 # Projet TAL : 
 
+## Auteurs
+Cédrick RIBET
+Hugo BOMMART
+Manfred MADELAINE
+
 ## A propos
 Version utilisée : python 3.3 32-bit
 
@@ -9,9 +14,6 @@ rentrer les commandes suivantes pour exécuter le programme:
 $ python reviewAnalyser.py chemin_vers_le_fichier/data/
 ```
 
-# Titre
-
-## Sous-titre
 
 More realistic form:
 

@@ -176,7 +176,7 @@ def evaluate(ypreds, ygolds):
 
 def apprentissageSac2Mot():
     #filepath = raw_input("Entrez le chemin d'accès des données d'entrainement : ")
-    filepath = "../data/"
+    filepath = "data/"
 
     # preparation des données
     data = read_data(filepath)

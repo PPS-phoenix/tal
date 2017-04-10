@@ -96,6 +96,17 @@ def entrerReview(test):
     test.append( (contents, label) )  
     print (test[0])
     
+    fichier = open("data.txt", "a")
+    fichier.write("Bonjour monde")
+    fichier.close()
+    
+    data = []
+    for reviewclass in ["bad", "good"]:
+        for filename in os.listdir(data_folder+"/"+label):
+            with io.open(data_folder+"/"+label+"/"+filename, "r", encoding="utf-8", errors="ignore") as fp:
+                contents = tokenise_en(fp.read().replace("\n", " "))
+                data.append( (contents, label) )
+    
 def f():
     # entrainement 
     logprobas_classes = calculate_logprobas_classes(train)

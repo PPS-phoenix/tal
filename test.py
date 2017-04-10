@@ -6,6 +6,7 @@ Created on Sun Apr  9 23:53:11 2017
 """
 
 from reviewAnalyser import *
+from datetime import date
 
 def start():
     print("\n\t\t\t*** Binvenue dans i-Opinion ou Opinion Way ***\n"+
@@ -17,13 +18,13 @@ def end():
     
     
 def menu():
-    print("Choisissez une méthode d'entrainement parmi les suivantes:"+
-          "\n\t1. Analyse par sac de mots"+
-          "\n\t2. Analyse des négations (non implémentée)")
-    
     repCorrecte = False
-                
+            
     while repCorrecte == False:
+        print("Choisissez une méthode d'entrainement parmi les suivantes:"+
+              "\n\t1. Analyse par sac de mots"+
+              "\n\t2. Analyse des négations (non implémentée)")
+        
         methode = raw_input("\nEntrez le numéro de la méthode choisie : "+
                             "(q pour quitter) \n>> ")
         
@@ -73,18 +74,23 @@ def isInt(s):
 def entrerReview(test):
     review = raw_input("Veuillez retrer votre critique : ")
     
+    name = raw_input("Veuillez retrer un nom pour votre critique : ")
+    
     repCorrecte = False
     while repCorrecte == False:
         note = raw_input("Veuillez noter votre critique de 1 à 5 : \n>> ")
         
         if isInt(note) :
             note = int(note)
-            
             if note >= 0 and note <= 5 :
                 repCorrecte = True
             
         else:
             print("Votre réponse est incorrecte !")
+    
+    
+    filepath = "data/"
+    data = read_data(filepath)
     
     #ajout de la critique dans la BDD
     if(note >2):
@@ -94,28 +100,22 @@ def entrerReview(test):
     
     contents = tokenise_en(review.replace("\n", " "))
     test.append( (contents, label) )  
-    print (test[0])
+    print (test[len(test)-1])
     
-    fichier = open("data.txt", "a")
-    fichier.write("Bonjour monde")
-    fichier.close()
+    today = date.today()
+    fileName = name + "_" + str(today.day) + "-" + str(today.month) +"-"+ str(today.year)   
     
-    data = []
-    for reviewclass in ["bad", "good"]:
-        for filename in os.listdir(data_folder+"/"+label):
-            with io.open(data_folder+"/"+label+"/"+filename, "r", encoding="utf-8", errors="ignore") as fp:
-                contents = tokenise_en(fp.read().replace("\n", " "))
-                data.append( (contents, label) )
+    with open("data/"+label +"/"+fileName+".txt", "w") as fichier:
+	    fichier.write(review)
     
-def f():
     # entrainement 
-    logprobas_classes = calculate_logprobas_classes(train)
-    logprobas_words =  calculate_logprobas_words(train, 0.01)
+    logprobas_classes = calculate_logprobas_classes(data)
+    logprobas_words =  calculate_logprobas_words(data, 0.01)
     
     #analyse de la critique
     ypreds, ygold = predict_all(logprobas_classes, logprobas_words, test)
-    print("\nScores on dev set: " + '\n' + str(ypreds) + '\n' + str(ygold) )
-    evaluate(ypreds, ygold)
+    print("\nPrédiction : " + '\n' + str(ypreds) + '\nRéalité:\n' + str(ygold) )
+
        
     #Le programme l'analysera et affichera sa prédiction.")    
 

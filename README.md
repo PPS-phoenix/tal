@@ -15,12 +15,10 @@ Version utilisée : **python 3.6** 32-bit
 ## Exécution
 rentrer les commandes suivantes pour exécuter le programme :
 ```
-$ python reviewAnalyser.py chemin_vers_le_fichier/data/
+$ python test.py 
 ```
 Liste des `options` en ligne de commande (si nécessaire) : 
-1. Homework #5
-2. po2
-1. op3
+1. pas d'option pour l'instant 
 
 ## Bibliothèques 
 Voici la liste des bibliothèques à installer:

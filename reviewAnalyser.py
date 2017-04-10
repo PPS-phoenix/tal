@@ -53,8 +53,8 @@ def divide_data(data):
 # calcule log p(class) pour chaque class
 def calculate_logprobas_classes(train):
     # nombre de chaque classs divisé par le total 
-    logpbad = math.log(len([x for x in data if x[1]=="bad"])/float(len(data)))
-    logpgood = math.log(len([x for x in data if x[1]=="good"])/float(len(data)))
+    logpbad = math.log(len([x for x in train if x[1]=="bad"])/float(len(train)))
+    logpgood = math.log(len([x for x in train if x[1]=="good"])/float(len(train)))
     return {"bad" : logpbad, "good" : logpgood}
 
 
@@ -169,19 +169,17 @@ def evaluate(ypreds, ygolds):
         
     print("Precision  \t= "+str(precision*100)+"%")
     print("Exactitude \t= "+str(recall*100)+"%")
-    print("Fscore \t= "+str(fscore*100)+"%")
-    print("Taux erreur \t= "+str(erreur*100)+"%")
+    print("Fscore   \t= "+str(fscore*100)+"%")
+    print("Taux d'erreur \t= "+str(erreur*100)+"%")
 
-       
 
-if __name__=="__main__":
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument("data_folder")
-    args = argparser.parse_args()
 
+def apprentissageSac2Mot():
+    #filepath = raw_input("Entrez le chemin d'accès des données d'entrainement : ")
+    filepath = "../data/"
 
     # preparation des données
-    data = read_data(args.data_folder)
+    data = read_data(filepath)
     
     shuffle_data(data)
     train, dev, test = divide_data(data)
@@ -189,7 +187,7 @@ if __name__=="__main__":
     # entrainement 
     logprobas_classes = calculate_logprobas_classes(train)
     logprobas_words =  calculate_logprobas_words(train, 0.01)
-
+    
     # prediction and evaluation on dev set. Adjust the smoothing factor
     # above to get the best possible score on the dev set
     ypreds, ygold = predict_all(logprobas_classes, logprobas_words, dev)
@@ -200,6 +198,10 @@ if __name__=="__main__":
     ypreds, ygold = predict_all(logprobas_classes, logprobas_words, test)
     print("\nScores on test set: " + '\n' + str(ypreds) + '\n' + str(ygold))
     evaluate(ypreds, ygold)
+   
+
+if __name__=="__main__":
+    apprentissageSac2Mot()
     
-    print("TODO: \nAffinier l'échelle  de classification des reviews : notation\
+    print("TODO: \nAffiner l'échelle  de classification des reviews : notation\
     \nIdentifier automatiquement certains aspects des reviews qui peuvent être pertinents")
